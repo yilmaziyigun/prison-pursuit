@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Database1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Birimler">
+          <Key>
+            <PropertyRef Name="birim_id" />
+          </Key>
+          <Property Name="birim_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="birim_ad" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="calısan">
+          <Key>
+            <PropertyRef Name="calısan_id" />
+          </Key>
+          <Property Name="calısan_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="calısan_ad" Type="nvarchar" MaxLength="50" />
+          <Property Name="calısan_soyad" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Personel">
+          <Key>
+            <PropertyRef Name="per_id" />
+          </Key>
+          <Property Name="per_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="per_ad" Type="nvarchar" MaxLength="50" />
+          <Property Name="per_soy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sicil">
+          <Key>
+            <PropertyRef Name="sicil_no" />
+          </Key>
+          <Property Name="sicil_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sicil_no_suc" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="vatandas">
+          <Key>
+            <PropertyRef Name="vatandas_id" />
+          </Key>
+          <Property Name="vatandas_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vatandas_tc" Type="nvarchar" MaxLength="11" />
+          <Property Name="vatandas_adsaoyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="vatandas_dogumgunu" Type="datetime" />
+          <Property Name="vatandas_cinsiyet" Type="nchar" MaxLength="10" />
+          <Property Name="vatandas_sicil" Type="nchar" MaxLength="10" />
+          <Property Name="sicil_no" Type="int" />
+        </EntityType>
+        <Association Name="FK_vatandas_Tosicil">
+          <End Role="Sicil" Type="Self.Sicil" Multiplicity="0..1" />
+          <End Role="vatandas" Type="Self.vatandas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sicil">
+              <PropertyRef Name="sicil_no" />
+            </Principal>
+            <Dependent Role="vatandas">
+              <PropertyRef Name="sicil_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Database1ModelStoreContainer">
+          <EntitySet Name="Birimler" EntityType="Self.Birimler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="calısan" EntityType="Self.calısan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sicil" EntityType="Self.Sicil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vatandas" EntityType="Self.vatandas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_vatandas_Tosicil" Association="Self.FK_vatandas_Tosicil">
+            <End Role="Sicil" EntitySet="Sicil" />
+            <End Role="vatandas" EntitySet="vatandas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Birimler">
+          <Key>
+            <PropertyRef Name="birim_id" />
+          </Key>
+          <Property Name="birim_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="birim_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="calısan">
+          <Key>
+            <PropertyRef Name="calısan_id" />
+          </Key>
+          <Property Name="calısan_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="calısan_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="calısan_soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Personel">
+          <Key>
+            <PropertyRef Name="per_id" />
+          </Key>
+          <Property Name="per_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="per_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="per_soy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Sicil">
+          <Key>
+            <PropertyRef Name="sicil_no" />
+          </Key>
+          <Property Name="sicil_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sicil_no_suc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="vatandas" Relationship="Self.FK_vatandas_Tosicil" FromRole="Sicil" ToRole="vatandas" />
+        </EntityType>
+        <EntityType Name="vatanda">
+          <Key>
+            <PropertyRef Name="vatandas_id" />
+          </Key>
+          <Property Name="vatandas_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vatandas_tc" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="vatandas_adsaoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="vatandas_dogumgunu" Type="DateTime" Precision="3" />
+          <Property Name="vatandas_cinsiyet" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="vatandas_sicil" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="sicil_no" Type="Int32" />
+          <NavigationProperty Name="Sicil" Relationship="Self.FK_vatandas_Tosicil" FromRole="vatandas" ToRole="Sicil" />
+        </EntityType>
+        <Association Name="FK_vatandas_Tosicil">
+          <End Role="Sicil" Type="Self.Sicil" Multiplicity="0..1" />
+          <End Role="vatandas" Type="Self.vatanda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sicil">
+              <PropertyRef Name="sicil_no" />
+            </Principal>
+            <Dependent Role="vatandas">
+              <PropertyRef Name="sicil_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Database1Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Birimlers" EntityType="Self.Birimler" />
+          <EntitySet Name="calısan" EntityType="Self.calısan" />
+          <EntitySet Name="Personels" EntityType="Self.Personel" />
+          <EntitySet Name="Sicils" EntityType="Self.Sicil" />
+          <EntitySet Name="vatandas" EntityType="Self.vatanda" />
+          <AssociationSet Name="FK_vatandas_Tosicil" Association="Self.FK_vatandas_Tosicil">
+            <End Role="Sicil" EntitySet="Sicils" />
+            <End Role="vatandas" EntitySet="vatandas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="Database1Entities1">
+          <EntitySetMapping Name="Birimlers">
+            <EntityTypeMapping TypeName="Database1Model.Birimler">
+              <MappingFragment StoreEntitySet="Birimler">
+                <ScalarProperty Name="birim_id" ColumnName="birim_id" />
+                <ScalarProperty Name="birim_ad" ColumnName="birim_ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="calısan">
+            <EntityTypeMapping TypeName="Database1Model.calısan">
+              <MappingFragment StoreEntitySet="calısan">
+                <ScalarProperty Name="calısan_id" ColumnName="calısan_id" />
+                <ScalarProperty Name="calısan_ad" ColumnName="calısan_ad" />
+                <ScalarProperty Name="calısan_soyad" ColumnName="calısan_soyad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personels">
+            <EntityTypeMapping TypeName="Database1Model.Personel">
+              <MappingFragment StoreEntitySet="Personel">
+                <ScalarProperty Name="per_id" ColumnName="per_id" />
+                <ScalarProperty Name="per_ad" ColumnName="per_ad" />
+                <ScalarProperty Name="per_soy" ColumnName="per_soy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sicils">
+            <EntityTypeMapping TypeName="Database1Model.Sicil">
+              <MappingFragment StoreEntitySet="Sicil">
+                <ScalarProperty Name="sicil_no" ColumnName="sicil_no" />
+                <ScalarProperty Name="sicil_no_suc" ColumnName="sicil_no_suc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vatandas">
+            <EntityTypeMapping TypeName="Database1Model.vatanda">
+              <MappingFragment StoreEntitySet="vatandas">
+                <ScalarProperty Name="vatandas_id" ColumnName="vatandas_id" />
+                <ScalarProperty Name="vatandas_tc" ColumnName="vatandas_tc" />
+                <ScalarProperty Name="vatandas_adsaoyad" ColumnName="vatandas_adsaoyad" />
+                <ScalarProperty Name="vatandas_dogumgunu" ColumnName="vatandas_dogumgunu" />
+                <ScalarProperty Name="vatandas_cinsiyet" ColumnName="vatandas_cinsiyet" />
+                <ScalarProperty Name="vatandas_sicil" ColumnName="vatandas_sicil" />
+                <ScalarProperty Name="sicil_no" ColumnName="sicil_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

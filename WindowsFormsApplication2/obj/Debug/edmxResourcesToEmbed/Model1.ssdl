@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Birimler">
+    <Key>
+      <PropertyRef Name="birim_id" />
+    </Key>
+    <Property Name="birim_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="birim_ad" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="calısan">
+    <Key>
+      <PropertyRef Name="calısan_id" />
+    </Key>
+    <Property Name="calısan_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="calısan_ad" Type="nvarchar" MaxLength="50" />
+    <Property Name="calısan_soyad" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Personel">
+    <Key>
+      <PropertyRef Name="per_id" />
+    </Key>
+    <Property Name="per_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="per_ad" Type="nvarchar" MaxLength="50" />
+    <Property Name="per_soy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sicil">
+    <Key>
+      <PropertyRef Name="sicil_no" />
+    </Key>
+    <Property Name="sicil_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sicil_no_suc" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="vatandas">
+    <Key>
+      <PropertyRef Name="vatandas_id" />
+    </Key>
+    <Property Name="vatandas_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="vatandas_tc" Type="nvarchar" MaxLength="11" />
+    <Property Name="vatandas_adsaoyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="vatandas_dogumgunu" Type="datetime" />
+    <Property Name="vatandas_cinsiyet" Type="nchar" MaxLength="10" />
+    <Property Name="vatandas_sicil" Type="nchar" MaxLength="10" />
+    <Property Name="sicil_no" Type="int" />
+  </EntityType>
+  <Association Name="FK_vatandas_Tosicil">
+    <End Role="Sicil" Type="Self.Sicil" Multiplicity="0..1" />
+    <End Role="vatandas" Type="Self.vatandas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sicil">
+        <PropertyRef Name="sicil_no" />
+      </Principal>
+      <Dependent Role="vatandas">
+        <PropertyRef Name="sicil_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Database1ModelStoreContainer">
+    <EntitySet Name="Birimler" EntityType="Self.Birimler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="calısan" EntityType="Self.calısan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sicil" EntityType="Self.Sicil" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vatandas" EntityType="Self.vatandas" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_vatandas_Tosicil" Association="Self.FK_vatandas_Tosicil">
+      <End Role="Sicil" EntitySet="Sicil" />
+      <End Role="vatandas" EntitySet="vatandas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

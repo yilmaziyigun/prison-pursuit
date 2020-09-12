@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="Database1Entities1">
+    <EntitySetMapping Name="Birimlers">
+      <EntityTypeMapping TypeName="Database1Model.Birimler">
+        <MappingFragment StoreEntitySet="Birimler">
+          <ScalarProperty Name="birim_id" ColumnName="birim_id" />
+          <ScalarProperty Name="birim_ad" ColumnName="birim_ad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="calısan">
+      <EntityTypeMapping TypeName="Database1Model.calısan">
+        <MappingFragment StoreEntitySet="calısan">
+          <ScalarProperty Name="calısan_id" ColumnName="calısan_id" />
+          <ScalarProperty Name="calısan_ad" ColumnName="calısan_ad" />
+          <ScalarProperty Name="calısan_soyad" ColumnName="calısan_soyad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personels">
+      <EntityTypeMapping TypeName="Database1Model.Personel">
+        <MappingFragment StoreEntitySet="Personel">
+          <ScalarProperty Name="per_id" ColumnName="per_id" />
+          <ScalarProperty Name="per_ad" ColumnName="per_ad" />
+          <ScalarProperty Name="per_soy" ColumnName="per_soy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sicils">
+      <EntityTypeMapping TypeName="Database1Model.Sicil">
+        <MappingFragment StoreEntitySet="Sicil">
+          <ScalarProperty Name="sicil_no" ColumnName="sicil_no" />
+          <ScalarProperty Name="sicil_no_suc" ColumnName="sicil_no_suc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vatandas">
+      <EntityTypeMapping TypeName="Database1Model.vatanda">
+        <MappingFragment StoreEntitySet="vatandas">
+          <ScalarProperty Name="vatandas_id" ColumnName="vatandas_id" />
+          <ScalarProperty Name="vatandas_tc" ColumnName="vatandas_tc" />
+          <ScalarProperty Name="vatandas_adsaoyad" ColumnName="vatandas_adsaoyad" />
+          <ScalarProperty Name="vatandas_dogumgunu" ColumnName="vatandas_dogumgunu" />
+          <ScalarProperty Name="vatandas_cinsiyet" ColumnName="vatandas_cinsiyet" />
+          <ScalarProperty Name="vatandas_sicil" ColumnName="vatandas_sicil" />
+          <ScalarProperty Name="sicil_no" ColumnName="sicil_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
